@@ -29,13 +29,13 @@
   }
 
   .theme-toggle {
-    @apply bg-neutral text-neutral-content border-none px-3 py-1 cursor-pointer transition-colors;
-}
+    @apply bg-base-300 text-base-content border-none px-3 py-1 cursor-pointer transition-colors;
+  }
 }
 
 @layer utilities {
-    .antialiased {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+  .antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
