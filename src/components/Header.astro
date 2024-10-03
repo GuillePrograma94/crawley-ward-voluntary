@@ -1,4 +1,5 @@
 ---
+import DarkModeToggle from './DarkModeToggle.jsx';
 import { type Header } from 'types';
 import Action from '@components/Action.astro';
 import ResponsiveImage from '@components/ResponsiveImage.astro';
@@ -39,7 +40,7 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath, showThemeToggle 
                         ))}
                         {showThemeToggle && (
                             <li>
-                                <button id="theme-toggle" class="theme-toggle px-4 py-3 h-auto min-h-0">Toggle Theme</button>
+                                <DarkModeToggle client:load />
                             </li>
                         )}
                     </ul>
@@ -67,7 +68,7 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath, showThemeToggle 
                                 ))}
                                 {showThemeToggle && (
                                     <li>
-                                        <button id="theme-toggle-mobile" class="theme-toggle w-full px-4 py-3.5 h-auto min-h-0">Toggle Theme</button>
+                                        <DarkModeToggle client:load />
                                     </li>
                                 )}
                             </ul>
@@ -141,30 +142,6 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath, showThemeToggle 
             navToggleIcon?.classList.toggle('is-active');
             nav?.classList.toggle('is-visible');
         });
-    }
-    
-    function themeToggle() {
-        const themeToggleButtons = document.querySelectorAll('.theme-toggle');
-        const html = document.documentElement;
-
-        function setTheme(theme) {
-            html.dataset.theme = theme;
-            localStorage.setItem('theme', theme);
-            themeToggleButtons.forEach(button => {
-                button.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
-            });
-        }
-
-        themeToggleButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const newTheme = html.dataset.theme === 'light' ? 'dark' : 'light';
-                setTheme(newTheme);
-            });
-        });
-
-        // Check for saved theme preference or use user's system preference
-        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        setTheme(savedTheme);
     }
 
     navToggle();

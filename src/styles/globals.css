@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --text: 0 0 0;
+  }
+
+  .dark {
+    --background: 26 26 26;
+    --text: 255 255 255;
+  }
+
+  body {
+    @apply bg-[rgb(var(--background))] text-[rgb(var(--text))];
+  }
+}
+
 @layer components {
   .markdown {
     h1,
@@ -27,11 +43,8 @@
       @apply mb-0;
     }
   }
-
-  .theme-toggle {
-    @apply bg-base-300 text-base-content border-none px-3 py-1 cursor-pointer transition-colors;
-  }
 }
+
 
 @layer utilities {
   .antialiased {
