@@ -12,9 +12,18 @@ const DarkModeToggle = () => {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    const newTheme = isDarkMode ? 'dark' : 'light';
+    root.setAttribute('data-theme', newTheme);
     root.classList.toggle('dark', isDarkMode);
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('theme', newTheme);
+    
+    // Force a re-render
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger a reflow
+    document.body.style.display = '';
+
+    // Dispatch custom event
+    window.dispatchEvent(new CustomEvent('themeChanged', { detail: newTheme }));
   }, [isDarkMode]);
 
   useEffect(() => {
