@@ -34,7 +34,6 @@ function formatCanonicalURL(url: string | URL) {
     return path.replace(/\/?$/, hasQueryParams ? '' : '/');
 }
 
-const themeToggleButton = <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>;
 ---
 
 <!doctype html>
@@ -73,7 +72,7 @@ const themeToggleButton = <button id="theme-toggle" class="theme-toggle">Toggle 
         {resolvedImage?.src && <meta property="twitter:image" content={resolvedImage.src} />}
     </head>
     <body class="antialiased">
-        <Header {...configData.header} themeToggleButton={themeToggleButton} data-sb-field-path={`${configData._id}:header`} />
+        <Header {...configData.header} showThemeToggle={true} data-sb-field-path={`${configData._id}:header`} />
         <slot />
         <Footer {...configData.footer} data-sb-field-path={`${configData._id}:footer`} />
         <script is:inline>
