@@ -2,19 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Moon } from 'lucide-react';
 
 const DarkModeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const theme = localStorage.getItem('theme');
+      return theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    return false;
+  });
 
   useEffect(() => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    setIsDarkMode(isDark);
+    const root = document.documentElement;
+    root.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    root.classList.toggle('dark', isDarkMode);
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
+      setIsDarkMode(mediaQuery.matches);
+    };
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
   }, []);
 
   const toggleDarkMode = () => {
-    const newTheme = isDarkMode ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-    setIsDarkMode(!isDarkMode);
-    localStorage.setItem('theme', newTheme);
+    setIsDarkMode(prev => !prev);
   };
 
   return (

@@ -10,6 +10,11 @@
       "@utils/*": ["src/utils/*"],
       "@data/*": ["src/data/*"],
     },
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   }
 }
