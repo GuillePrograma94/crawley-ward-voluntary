@@ -3,14 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  [data-theme="light"] {
     --background: 255 255 255;
     --text: 0 0 0;
+    --primary: 255 174 156;
+    --secondary: 255 242 215;
+    --accent: 227 241 255;
   }
 
-  .dark {
+  [data-theme="dark"] {
     --background: 26 26 26;
     --text: 255 255 255;
+    --primary: 255 174 156;
+    --secondary: 255 242 215;
+    --accent: 227 241 255;
   }
 
   body {
@@ -47,8 +54,10 @@
 
 
 @layer utilities {
-  .antialiased {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  .bg-primary { @apply bg-[rgb(var(--primary))]; }
+  .bg-secondary { @apply bg-[rgb(var(--secondary))]; }
+  .bg-accent { @apply bg-[rgb(var(--accent))]; }
+  .text-primary { @apply text-[rgb(var(--primary))]; }
+  .text-secondary { @apply text-[rgb(var(--secondary))]; }
+  .text-accent { @apply text-[rgb(var(--accent))]; }
 }

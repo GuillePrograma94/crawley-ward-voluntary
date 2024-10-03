@@ -11,8 +11,13 @@ export default {
                 'grid-pattern': `linear-gradient(to bottom, theme('colors.neutral.950 / 0%'), theme('colors.neutral.950 / 100%'))`
             },
             colors: {
-                neutral: colors.neutral
-            },
+                neutral: colors.neutral,
+                background: 'rgb(var(--background) / <alpha-value>)',
+                text: 'rgb(var(--text) / <alpha-value>)',
+                primary: 'rgb(var(--primary) / <alpha-value>)',
+                secondary: 'rgb(var(--secondary) / <alpha-value>)',
+                accent: 'rgb(var(--accent) / <alpha-value>)',
+              },
             fontFamily: {
                 sans: ['Mulish', ...defaultTheme.fontFamily.sans]
             }

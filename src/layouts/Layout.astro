@@ -4,6 +4,7 @@ import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
 import { fetchData } from '@data/siteConfig';
 import '@styles/globals.css';
+import { useEffect } from 'react';
 
 interface Props {
     title: string;
@@ -28,7 +29,7 @@ function formatCanonicalURL(url: string | URL) {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
     <head>
         <!-- High Priority Global Metadata -->
         <meta charset="utf-8" />
@@ -71,12 +72,26 @@ function formatCanonicalURL(url: string | URL) {
             })();
         </script>
     </head>
-    <body class="antialiased" data-theme="">
+    <body class="antialiased" data-theme={savedTheme}>
         <Header {...configData.header} showThemeToggle={true} data-sb-field-path={`${configData._id}:header`} />
         <slot />
         <Footer {...configData.footer} data-sb-field-path={`${configData._id}:footer`} />
-        <script is:inline>
-            document.body.setAttribute('data-theme', document.documentElement.getAttribute('data-theme'));
-        </script>
-    </body>
+        <script>
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                document.body.setAttribute('data-theme', theme);  // Add this line
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+                localStorage.setItem('theme', theme);
+            }
+
+      // Set initial theme
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(savedTheme);
+
+      // Listen for theme changes
+      window.addEventListener('themeChanged', (e) => {
+        setTheme(e.detail);
+      });
+    </script>
+  </body>
 </html>
