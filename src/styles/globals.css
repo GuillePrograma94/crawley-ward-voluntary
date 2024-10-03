@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background-color: #ffffff;
-    --text-color: #333333;
-  }
-
-  [data-theme="dark"] {
-    --background-color: #333333;
-    --text-color: #ffffff;
-  }
-
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-}
-
 @layer components {
   .markdown {
     h1,
@@ -47,13 +29,13 @@
   }
 
   .theme-toggle {
-    @apply bg-text text-background border-none px-3 py-1 cursor-pointer transition-colors;
-  }
+    @apply bg-neutral text-neutral-content border-none px-3 py-1 cursor-pointer transition-colors;
+}
 }
 
 @layer utilities {
-  .antialiased {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+    .antialiased {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 }
