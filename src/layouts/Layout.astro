@@ -33,6 +33,8 @@ function formatCanonicalURL(url: string | URL) {
     // otherwise, canonical URL always has a trailing slash
     return path.replace(/\/?$/, hasQueryParams ? '' : '/');
 }
+
+const themeToggleButton = <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>;
 ---
 
 <!doctype html>
@@ -71,13 +73,32 @@ function formatCanonicalURL(url: string | URL) {
         {resolvedImage?.src && <meta property="twitter:image" content={resolvedImage.src} />}
     </head>
     <body class="antialiased">
-        <Header {...configData.header} data-sb-field-path={`${configData._id}:header`} />
+        <Header {...configData.header} themeToggleButton={themeToggleButton} data-sb-field-path={`${configData._id}:header`} />
         <slot />
         <Footer {...configData.footer} data-sb-field-path={`${configData._id}:footer`} />
         <script is:inline>
             window.addEventListener('stackbitObjectsChanged', () => {
                 window.location.reload();
             });
+        </script>
+        <script>
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            function setTheme(theme) {
+                html.dataset.theme = theme;
+                localStorage.setItem('theme', theme);
+                themeToggle.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = html.dataset.theme === 'light' ? 'dark' : 'light';
+                setTheme(newTheme);
+            });
+
+            // Check for saved theme preference or use user's system preference
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme(savedTheme);
         </script>
     </body>
 </html>
