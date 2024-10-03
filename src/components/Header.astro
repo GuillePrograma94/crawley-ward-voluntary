@@ -5,9 +5,10 @@ import ResponsiveImage from '@components/ResponsiveImage.astro';
 
 interface Props extends Header {
     'data-sb-field-path'?: string;
+    showThemeToggle?: boolean;
 }
 
-const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
+const { title, logo, navLinks, 'data-sb-field-path': fieldPath, showThemeToggle } = Astro.props;
 ---
 
 <nav class="p-4 sm:p-5" data-sb-field-path={fieldPath}>
@@ -24,7 +25,7 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
             )
         }
         {
-            navLinks && navLinks.length > 0 && (
+            (navLinks && navLinks.length > 0) || showThemeToggle ? (
                 <>
                     <ul class="hidden lg:flex lg:flex-wrap lg:items-center lg:gap-6" data-sb-field-path=".navLinks">
                         {navLinks.map((item, index) => (
@@ -36,6 +37,11 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
                                 />
                             </li>
                         ))}
+                        {showThemeToggle && (
+                            <li>
+                                <button id="theme-toggle" class="theme-toggle px-4 py-3 h-auto min-h-0">Toggle Theme</button>
+                            </li>
+                        )}
                     </ul>
                     <div class="relative lg:hidden">
                         <button
@@ -59,6 +65,11 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
                                         />
                                     </li>
                                 ))}
+                                {showThemeToggle && (
+                                    <li>
+                                        <button id="theme-toggle-mobile" class="theme-toggle w-full px-4 py-3.5 h-auto min-h-0">Toggle Theme</button>
+                                    </li>
+                                )}
                             </ul>
                         </div>
                     </div>
@@ -131,6 +142,35 @@ const { title, logo, navLinks, 'data-sb-field-path': fieldPath } = Astro.props;
             nav?.classList.toggle('is-visible');
         });
     }
+    
+    function themeToggle() {
+        const themeToggleButtons = document.querySelectorAll('.theme-toggle');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.dataset.theme = theme;
+            localStorage.setItem('theme', theme);
+            themeToggleButtons.forEach(button => {
+                button.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+            });
+        }
+
+        themeToggleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const newTheme = html.dataset.theme === 'light' ? 'dark' : 'light';
+                setTheme(newTheme);
+            });
+        });
+
+        // Check for saved theme preference or use user's system preference
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        setTheme(savedTheme);
+    }
+
     navToggle();
-    document.addEventListener('astro:after-swap', navToggle);
+    themeToggle();
+    document.addEventListener('astro:after-swap', () => {
+        navToggle();
+        themeToggle();
+    });
 </script>
