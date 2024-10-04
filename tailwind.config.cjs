@@ -55,7 +55,7 @@ export default {
                     'accent-content': '#171227',
                     neutral: '#2e293c',
                     'neutral-content': '#ffffff',
-                    'base-100': '#171227',
+                    'base-100': '#1a1a1a',
                     'base-200': '#2e293c',
                     'base-content': '#ffffff',
                     '--rounded-btn': '.375rem',
