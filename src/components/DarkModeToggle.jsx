@@ -25,13 +25,6 @@ const DarkModeToggle = () => {
     // Dispatch custom event
     window.dispatchEvent(new CustomEvent('themeChanged', { detail: newTheme }));
 
-    // Set a timeout to refresh the page after animation
-    const timeoutId = setTimeout(() => {
-      window.location.reload();
-    }, 300); // Match this duration with the CSS transition duration
-
-    return () => clearTimeout(timeoutId);
-
   }, [isDarkMode]);
 
   useEffect(() => {
@@ -60,7 +53,7 @@ const DarkModeToggle = () => {
         {isDarkMode ? (
           <Moon size={16} className="text-base-content" />
         ) : (
-          <Sun size={16} className="text-base-content" />
+          <Sun size={16} className="text-yellow-400" />
         )}
       </div>
     </div>
