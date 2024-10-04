@@ -1,8 +1,11 @@
 crawley-ward-voluntary/
+│   .env
 │   .env-sample
+│   .env.local
 │   .gitignore
 │   .prettierrc
 │   astro.config.mjs
+│   env.d.ts
 │   package-lock.json
 │   package.json
 │   README.md
@@ -10,6 +13,13 @@ crawley-ward-voluntary/
 │   stackbit.config.ts
 │   tailwind.config.cjs
 │   tsconfig.json
+├── .astro/
+├── │   settings.json
+├── │   types.d.ts
+├── .sanity/
+│   ├── runtime/
+│   ├── │   app.js
+│   ├── │   index.html
 ├── .stackbit/
 │   ├── models/
 │   ├── │   actionButton.ts
@@ -47,6 +57,7 @@ crawley-ward-voluntary/
 │   ├── │   Card.astro
 │   ├── │   Cards.astro
 │   ├── │   Cta.astro
+│   ├── │   DarkModeToggle.jsx
 │   ├── │   Footer.astro
 │   ├── │   Header.astro
 │   ├── │   Hero.astro
@@ -72,7 +83,7 @@ crawley-ward-voluntary/
 │   ├── utils/
 │   ├── │   sanity-client.ts
 ├── studio/
-├── │   .env-sample
+├── │   .env
 ├── │   .eslintrc
 ├── │   .gitignore
 ├── │   package-lock.json
