@@ -18,22 +18,16 @@ const DarkModeToggle = () => {
       isInitialMount.current = false;
       return;
     }
-    
+
     const root = document.documentElement;
     const newTheme = isDarkMode ? 'dark' : 'light';
     root.setAttribute('data-theme', newTheme);
     root.classList.toggle('dark', isDarkMode);
     localStorage.setItem('theme', newTheme);
-    
-    // Dispatch custom event
+
+    // Just dispatch the event; no need to reload the page
     window.dispatchEvent(new CustomEvent('themeChanged', { detail: newTheme }));
     
-    // Delay the page refresh to allow animation completion
-    const timeoutId = setTimeout(() => {
-      window.location.reload();
-    }, 300); // Ensure this matches with your CSS animation duration
-
-    return () => clearTimeout(timeoutId);
   }, [isDarkMode]);
 
   useEffect(() => {
