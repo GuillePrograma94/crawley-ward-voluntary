@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Crawley Ward//Event Calendar//EN
+BEGIN:VEVENT
+UID:enevent-1@https://crawley-ward.netlify.app/
+DTSTAMP:20231008T080000Z
+DTSTART:20231013T173000Z
+DTEND:20231013T190000Z
+SUMMARY:Crawley Stake Fireside
+DESCRIPTION:Join us for our upcoming Crawley Stake Fireside. This event promises to be a meaningful opportunity to feel the spirit.
+LOCATION:The Church of Jesus Christ of Latter-day Saints, Old Horsham Rd, Crawley RH11 8PD
+END:VEVENT
+END:VCALENDAR

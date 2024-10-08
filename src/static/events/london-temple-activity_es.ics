@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Crawley Ward//Event Calendar//ES
+BEGIN:VEVENT
+UID:event-2@https://crawley-ward.netlify.app/
+DTSTAMP:20231008T080000Z
+DTSTART:20241026T130000Z
+DTEND:20241026T143000Z
+SUMMARY:Actividad Especial en el Templo
+DESCRIPTION:La Presidencia de la Primaria de la Estaca está organizando una actividad especial en el Templo de Londres para presentar las bendiciones del servicio en el templo, el servicio del sacerdocio, y hacer y guardar convenios sagrados. La invitación es para los niños que cumplirán 12 años en 2025 y sus padres.
+LOCATION:Templo de Londres, W Park Rd, Newchapel, Lingfield RH7 6HW, UK
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Crawley Ward//Event Calendar//ES
+BEGIN:VEVENT
+UID:esevent-1@https://crawley-ward.netlify.app/
+DTSTAMP:20231008T080000Z
+DTSTART:20231013T173000Z
+DTEND:20231013T190000Z
+SUMMARY:Charla Fogonera de la Estaca Crawley
+DESCRIPTION:Acompáñanos en nuestra próxima Charla Fogonera de la Estaca Crawley. Este evento promete ser una oportunidad significativa para sentir el espíritu.
+LOCATION:La Iglesia de Jesucristo de los Santos de los Últimos Días, Old Horsham Rd, Crawley RH11 8PD
+END:VEVENT
+END:VCALENDAR
